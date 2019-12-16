@@ -84,14 +84,11 @@ defmodule Samly.RouterUtil do
 
   def send_saml_request(conn, idp_url, use_redirect?, signed_xml_payload, relay_state) do
     if use_redirect? do
-      url =
-        :esaml_binding.encode_http_redirect(idp_url, signed_xml_payload, :undefined, relay_state)
+      forced_relay_state = "https://testwe-preprod.gar.ninja/"
+      # url = :esaml_binding.encode_http_redirect(idp_url, signed_xml_payload, :undefined, relay_state)
+      url = :esaml_binding.encode_http_redirect(idp_url, signed_xml_payload, :undefined, "") <> forced_relay_state
 
       Logger.error("url for send_saml_request: #{url} : #{inspect(url)}")
-      url2 =
-        :esaml_binding.encode_http_redirect(idp_url, signed_xml_payload, :undefined, "")
-      Logger.error("url TEST for send_saml_request: #{url} : #{inspect(url2)}")
-
 
       conn |> redirect(302, url)
     else
