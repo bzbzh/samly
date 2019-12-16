@@ -87,6 +87,12 @@ defmodule Samly.RouterUtil do
       url =
         :esaml_binding.encode_http_redirect(idp_url, signed_xml_payload, :undefined, relay_state)
 
+      Logger.error("url for send_saml_request: #{url} : #{inspect(url)}")
+      url2 =
+        :esaml_binding.encode_http_redirect(idp_url, signed_xml_payload, :undefined, "")
+      Logger.error("url TEST for send_saml_request: #{url} : #{inspect(url2)}")
+
+
       conn |> redirect(302, url)
     else
       nonce = conn.private[:samly_nonce]
