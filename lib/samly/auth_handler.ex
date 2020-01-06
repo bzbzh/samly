@@ -67,8 +67,8 @@ defmodule Samly.AuthHandler do
         conn |> redirect(302, target_url)
 
       _ ->
-      relay_state = State.gen_id()
-      #  relay_state = "https://testwe-preprod.gar.ninja/"
+      # relay_state = State.gen_id()
+      relay_state = "https://testwe-preprod.gar.ninja/"
 
         {idp_signin_url, req_xml_frag} =
           Helper.gen_idp_signin_req(sp, idp_rec, Map.get(idp, :nameid_format))
