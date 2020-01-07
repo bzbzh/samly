@@ -86,10 +86,10 @@ defmodule Samly.RouterUtil do
     if use_redirect? do
       url = :esaml_binding.encode_http_redirect(idp_url, signed_xml_payload, :undefined, relay_state)
 
-      Logger.error("url for send_saml_request: #{url} : #{inspect(url)}")
+      Logger.error("relay_state and url for send_saml_request: #{relay_state} : #{(url)}")
 
-      # conn |> redirect_no_encoding(302, url)
-      conn |> redirect(302, url)
+      conn |> redirect_no_encoding(302, url)
+      # conn |> redirect(302, url)
     else
       nonce = conn.private[:samly_nonce]
       resp_body = :esaml_binding.encode_http_post(idp_url, signed_xml_payload, relay_state, nonce)
