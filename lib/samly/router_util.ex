@@ -88,7 +88,8 @@ defmodule Samly.RouterUtil do
 
       Logger.error("url for send_saml_request: #{url} : #{inspect(url)}")
 
-      conn |> redirect_no_encoding(302, url)
+      # conn |> redirect_no_encoding(302, url)
+      conn |> redirect(302, url)
     else
       nonce = conn.private[:samly_nonce]
       resp_body = :esaml_binding.encode_http_post(idp_url, signed_xml_payload, relay_state, nonce)
