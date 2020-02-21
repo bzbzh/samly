@@ -29,7 +29,7 @@ defmodule Samly.RouterUtil do
     if idp do
       conn |> Conn.put_private(:samly_idp, idp)
     else
-      conn |> Conn.send_resp(403, "invalid_request unknown IdP") |> Conn.halt()
+      conn |> Conn.send_resp(403, "invalid_request unknown IdP:" <> idp_id) |> Conn.halt()
     end
   end
 
