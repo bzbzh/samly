@@ -1,12 +1,17 @@
 defmodule Samly.Helper do
   @moduledoc false
+  require Logger
 
   require Samly.Esaml
   alias Samly.{Assertion, Esaml, IdpData}
 
   @spec get_idp(binary) :: nil | IdpData.t()
   def get_idp(idp_id) do
+    Logger.error("Getting idp: " <> idp_id <> ".")
     idps = Application.get_env(:samly, :identity_providers, %{})
+    Logger.error("idps: #{inspect idps}")
+    test = Map.get(idps, idp_id)
+    Logger.error("idp: #{inspect test}")
     Map.get(idps, idp_id)
   end
 
