@@ -7,17 +7,7 @@ defmodule Samly.Helper do
 
   @spec get_idp(binary) :: nil | IdpData.t()
   def get_idp(idp_id) do
-    Logger.error("Getting idp: " <> idp_id <> ".")
-    test1 = Application.get_env(:logger, :level, %{})
-    Logger.error("idps id from: #{inspect test1}")
-    idp_test = Application.get_env(:samly, :idp_id_from, %{})
-    Logger.error("idps id from: #{inspect idp_test}")
-    provids = Application.get_env(:samly, :test, %{})
-    Logger.error("test: #{inspect provids}")
     idps = Application.get_env(:samly, :identity_providers, %{})
-    Logger.error("idps: #{inspect idps}")
-    test = Map.get(idps, idp_id)
-    Logger.error("idp: #{inspect test}")
     Map.get(idps, idp_id)
   end
 
