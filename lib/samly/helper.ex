@@ -10,7 +10,7 @@ defmodule Samly.Helper do
     Logger.error("Getting idp: " <> idp_id <> ".")
     test1 = Application.get_env(:logger, :level, %{})
     Logger.error("idps id from: #{inspect test1}")
-    ipd_test = Application.get_env(:samly, :idp_id_from, %{})
+    idp_test = Application.get_env(:samly, :idp_id_from, %{})
     Logger.error("idps id from: #{inspect idp_test}")
     provids = Application.get_env(:samly, :service_providers, %{})
     Logger.error("idps id from: #{inspect provids}")
